@@ -3,10 +3,7 @@ package com.ruhul.chatappdemo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.ruhul.chatappdemo.databinding.ActivityGetUserDataBinding
@@ -15,6 +12,7 @@ class PingDataActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityGetUserDataBinding
     private lateinit var database: DatabaseReference
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,14 +25,18 @@ class PingDataActivity : AppCompatActivity() {
 
         //ping
         binding.postButton.setOnClickListener {
+            val time = ServerValue.TIMESTAMP
+
+            Log.d("time", "time = $time")
+
             val ping = Ping(
-                "25-1-23",
+                ServerValue.TIMESTAMP,
                 "",
                 binding.brodCastIdEdiText.text.toString(),
                 binding.fcmToken.text.toString(),
-                "Online"
+                "Online",
             )
-            database.child("ping").child(binding.userId.text.toString().trim())
+            database.child("ping2").child(binding.userId.text.toString().trim())
                 .setValue(ping)
         }
 
@@ -47,13 +49,12 @@ class PingDataActivity : AppCompatActivity() {
 
     private fun getData(id: String) {
 
-        database.child("ping").child(id)
+        database.child("ping2").child(id)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     Log.d("msgLog", dataSnapshot.value.toString())
                     val ping: Ping? = dataSnapshot.getValue(Ping::class.java)
                     if (ping != null) {
-                        binding.fcmToken.setText(ping.host_last_updated_at)
                         binding.brodCastIdEdiText.setText(ping.broadcast_id)
                     }
                 }

@@ -16,7 +16,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="56dp"
             android:background="@color/white"
             android:elevation="1dp"
             app:layout_constraintTop_toTopOf="parent">
@@ -34,7 +34,7 @@
         </androidx.appcompat.widget.Toolbar>
 
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/idEdiText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -48,7 +48,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/nameEdiText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -62,7 +62,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/idEdiText" />
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/messageEdiText"
             android:layout_width="match_parent"
             android:layout_height="50dp"

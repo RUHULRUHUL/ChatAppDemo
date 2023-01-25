@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /*   binding = ActivityMainBinding.inflate(layoutInflater)
-           setContentView(binding.root)*/
 
         binding = DataBindingUtil.setContentView(
             this,
@@ -27,25 +25,22 @@ class MainActivity : AppCompatActivity() {
 
         database = Firebase.database.reference
 
-        val chat = Chat(
-            "true",
-            "start",
-            message = binding.messageEdiText.text.toString(),
-            "Success",
-            "Online",
-            "chat",
-            name = binding.nameEdiText.text.toString()
-        )
-
-/*        binding.postButton.setOnClickListener {
-            database.child("broadcast_status").child("user-"+binding.idEdiText.text.toString().trim())
-                .setValue(chat)
-
-        }*/
-
         binding.postButton.setOnClickListener {
-            database.child("ping").child("user-" + binding.idEdiText.text.toString().trim())
+            val chat = Chat(
+                "true",
+                "start",
+                binding.messageEdiText.text.toString(),
+                "Success",
+                "online",
+                "chat",
+                binding.nameEdiText.text.toString()
+            )
+            database.child("ping").child(binding.idEdiText.text.toString().trim())
                 .setValue(chat)
+        }
+
+        binding.getButton.setOnClickListener {
+
 
         }
 

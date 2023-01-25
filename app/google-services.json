@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "153304543362",
+    "project_id": "chat-app-db3fd",
+    "storage_bucket": "chat-app-db3fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153304543362:android:4a74e2270d9efe43e5c49b",
+        "android_client_info": {
+          "package_name": "com.ruhul.chatappdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153304543362-vd4cfoa0mt1g5vsugeqls112aq892uae.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ruhul.chatappdemo",
+            "certificate_hash": "d2f9bb7259abbb096360d34a2aed07b1c3a68121"
+          }
+        },
+        {
+          "client_id": "153304543362-37borhnktap9hjlkptmlcid064oj59ms.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHovEM5iQo0ro3ZT4Zigz3bpT2yerfxlY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153304543362-37borhnktap9hjlkptmlcid064oj59ms.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

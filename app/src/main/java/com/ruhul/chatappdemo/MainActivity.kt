@@ -1,5 +1,6 @@
 package com.ruhul.chatappdemo
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -27,8 +28,17 @@ class MainActivity : AppCompatActivity() {
             R.layout.activity_main
         )
 
+        binding.toolbar.title = "broadcast_status"
+
+
         database = Firebase.database.reference
 
+        binding.pingActivity.setOnClickListener {
+             startActivity(Intent(this,PingDataActivity::class.java))
+
+        }
+
+        //broadcast_status
         binding.postButton.setOnClickListener {
             val chat = Chat(
                 "true",
@@ -36,10 +46,9 @@ class MainActivity : AppCompatActivity() {
                 binding.messageEdiText.text.toString(),
                 "Success",
                 "online",
-                "chat",
-                binding.nameEdiText.text.toString()
+                "chat"
             )
-            database.child("ping").child(binding.idEdiText.text.toString().trim()).setValue(chat)
+            database.child("broadcast_status").child(binding.idEdiText.text.toString().trim()).setValue(chat)
         }
 
         binding.getButton.setOnClickListener {
@@ -52,25 +61,16 @@ class MainActivity : AppCompatActivity() {
     }
     private fun getData(id: String){
 
-        database.child("ping").child(id)
+        database.child("broadcast_status").child(id)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     Log.d("msgLog", dataSnapshot.value.toString())
 
                     val chatData: Chat? = dataSnapshot.getValue(Chat::class.java)
                     if (chatData != null) {
-                        binding.nameEdiText.setText(chatData.name)
+                        //binding.nameEdiText.setText(chatData.name)
                         binding.messageEdiText.setText(chatData.message)
                     }
-                    Log.d("msgLog", chatData?.name.toString())
-
-                 /*   if (dataSnapshot.value != null) {
-                        for (childSnapshot in dataSnapshot.children) {
-                            val chatData: Chat? = childSnapshot.getValue(Chat::class.java)
-                            val name: String = chatData?.name.toString()
-                            Log.d("msgLog", name)
-                        }
-                    }*/
                 }
                 override fun onCancelled(error: DatabaseError) {
                   Log.d("msgLog", "Error msg = ${error.message}")

@@ -29,6 +29,7 @@ class PingDataActivity : AppCompatActivity() {
         binding.postButton.setOnClickListener {
             val ping = Ping(
                 "25-1-23",
+                "",
                 binding.brodCastIdEdiText.text.toString(),
                 binding.fcmToken.text.toString(),
                 "Online"
@@ -38,7 +39,8 @@ class PingDataActivity : AppCompatActivity() {
         }
 
         binding.getButton.setOnClickListener {
-            getData(binding.userId.text.toString())
+           val id = binding.userId.text.toString().trim()
+            getData(id)
         }
 
     }
@@ -51,7 +53,7 @@ class PingDataActivity : AppCompatActivity() {
                     Log.d("msgLog", dataSnapshot.value.toString())
                     val ping: Ping? = dataSnapshot.getValue(Ping::class.java)
                     if (ping != null) {
-                        binding.fcmToken.setText(ping.fcm_token)
+                        binding.fcmToken.setText(ping.host_last_updated_at)
                         binding.brodCastIdEdiText.setText(ping.broadcast_id)
                     }
                 }

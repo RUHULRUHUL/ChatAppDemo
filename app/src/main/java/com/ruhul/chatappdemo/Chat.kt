@@ -2,7 +2,7 @@ package com.ruhul.chatappdemo
 
 
 data class Chat(
-    val status: String,
+    val status: Boolean,
     val type: String,
     val action_status: String,
     val message: String,
@@ -10,5 +10,5 @@ data class Chat(
     val end_broadcast: String
 
 ) {
-    constructor() : this("", "", "", "", "", "")
+    constructor() : this(false, "", "", "", "", "")
 }

@@ -40,15 +40,17 @@ class MainActivity : AppCompatActivity() {
 
         //broadcast_status
         binding.postButton.setOnClickListener {
+
             val chat = Chat(
-                "true",
+                true,
                 "start",
                 binding.messageEdiText.text.toString(),
                 "Success",
                 "online",
                 "chat"
             )
-            database.child("broadcast_status").child(binding.idEdiText.text.toString().trim()).setValue(chat)
+            database.child("broadcast_status").
+            child(binding.idEdiText.text.toString().trim()).setValue(chat)
         }
 
         binding.getButton.setOnClickListener {

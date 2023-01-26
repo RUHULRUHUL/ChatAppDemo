@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -50,6 +51,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, PingDataActivity::class.java))
 
         }
+
+        getAllData()
+        getSpecificQueryData()
+
+
+
 
         //broadcast_status
         binding.postButton.setOnClickListener {
@@ -102,6 +109,48 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun getSpecificQueryData() {
+        database.child("broadcast_status")
+            .orderByChild("message")
+            .addListenerForSingleValueEvent(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    Log.d("orderByChild", snapshot.toString())
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+
+        database.child("broadcast_status")
+            .orderByChild("message")
+            .limitToFirst(10)
+            .addListenerForSingleValueEvent(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    Log.d("orderByChild", snapshot.toString())
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+    }
+
+    private fun getAllData() {
+        database.child("broadcast_status").addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d("broadcast_status", snapshot.toString())
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     private fun getData(id: String) {

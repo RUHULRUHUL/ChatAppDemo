@@ -3,8 +3,11 @@ package com.ruhul.chatappdemo
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -19,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var database: DatabaseReference
 
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,38 +35,76 @@ class MainActivity : AppCompatActivity() {
 
         binding.toolbar.title = "broadcast_status"
 
-
+        auth = Firebase.auth
         database = Firebase.database.reference
 
+        binding.logOutButton.setOnClickListener {
+            Firebase.auth.signOut()
+            Toast.makeText(this, "log out success", Toast.LENGTH_SHORT).show()
+/*            startActivity(Intent(this, SignInActivity::class.java))
+            finish()*/
+        }
+
+
         binding.pingActivity.setOnClickListener {
-             startActivity(Intent(this,PingDataActivity::class.java))
+            startActivity(Intent(this, PingDataActivity::class.java))
 
         }
 
         //broadcast_status
         binding.postButton.setOnClickListener {
 
-            val chat = Chat(
-                true,
-                "start",
-                binding.messageEdiText.text.toString(),
-                "Success",
-                "online",
-                "chat"
-            )
-            database.child("broadcast_status").
-            child(binding.idEdiText.text.toString().trim()).setValue(chat)
+            if (auth.currentUser != null) {
+                val chat = Chat(
+                    true,
+                    "start",
+                    "Success",
+                    binding.messageEdiText.text.toString(),
+                    "online",
+                    "chat"
+                )
+                database.child("broadcast_status")
+                    .child(binding.idEdiText.text.toString().trim())
+                    .setValue(chat)
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            Toast.makeText(
+                                this,
+                                "broadcast_status data save success",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "broadcast_status data save fail",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                    }
+            }else{
+                Toast.makeText(this, "not Authorization please logIn", Toast.LENGTH_SHORT).show()
+            }
+
+
         }
 
         binding.getButton.setOnClickListener {
-            val id = binding.idEdiText.text.toString().trim()
-            getData(id)
+
+            if (auth.currentUser != null) {
+                val id = binding.idEdiText.text.toString().trim()
+                getData(id)
+            }else{
+                Toast.makeText(this, "not Authorization please logIn", Toast.LENGTH_SHORT).show()
+            }
+
 
         }
 
 
     }
-    private fun getData(id: String){
+
+    private fun getData(id: String) {
 
         database.child("broadcast_status").child(id)
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -74,8 +117,9 @@ class MainActivity : AppCompatActivity() {
                         binding.messageEdiText.setText(chatData.message)
                     }
                 }
+
                 override fun onCancelled(error: DatabaseError) {
-                  Log.d("msgLog", "Error msg = ${error.message}")
+                    Log.d("msgLog", "Error msg = ${error.message}")
                 }
 
             })

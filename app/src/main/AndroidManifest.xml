@@ -13,14 +13,18 @@
         android:theme="@style/MainActivityTheme"
         tools:targetApi="33">
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".PingDataActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name=".MainActivity"
+            android:name=".SignInActivity"
             android:exported="true"
             android:theme="@style/MainActivityTheme">
             <intent-filter>
@@ -33,6 +37,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
     </application>
 
 </manifest>

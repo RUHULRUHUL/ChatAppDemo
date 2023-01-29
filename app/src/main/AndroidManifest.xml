@@ -13,7 +13,16 @@
         android:theme="@style/MainActivityTheme"
         tools:targetApi="33">
         <activity
-            android:name=".MainActivity"
+            android:name=".java.SignInJavaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".java.PingJavaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".java.BroadCastJavaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BroadCastActivity"
             android:exported="false" />
         <activity
             android:name=".PingDataActivity"
@@ -37,7 +46,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
     </application>
 
 </manifest>

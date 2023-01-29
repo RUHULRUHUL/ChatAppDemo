@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.ruhul.chatappdemo.databinding.ActivitySignInBinding
@@ -45,7 +44,7 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun gotoMainActivity() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, BroadCastActivity::class.java))
         finish()
     }
 
@@ -64,7 +63,7 @@ class SignInActivity : AppCompatActivity() {
             )
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        startActivity(Intent(this, MainActivity::class.java))
+                        startActivity(Intent(this, BroadCastActivity::class.java))
                         finish()
                     } else {
                         Toast.makeText(

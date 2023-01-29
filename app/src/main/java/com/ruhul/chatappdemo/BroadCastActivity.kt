@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -18,7 +17,7 @@ import com.google.firebase.ktx.Firebase
 import com.ruhul.chatappdemo.databinding.ActivityMainBinding
 
 
-class MainActivity : AppCompatActivity() {
+class BroadCastActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var database: DatabaseReference
@@ -51,12 +50,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, PingDataActivity::class.java))
 
         }
-
-        getAllData()
-        getSpecificQueryData()
-
-
-
 
         //broadcast_status
         binding.postButton.setOnClickListener {
@@ -105,9 +98,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "not Authorization please logIn", Toast.LENGTH_SHORT).show()
             }
 
-
         }
-
 
     }
 

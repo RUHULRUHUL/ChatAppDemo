@@ -6,8 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F3F3F3"
-        tools:context=".PingDataActivity">
+        tools:context=".java.BroadCastJavaActivity">
 
 
         <androidx.appcompat.widget.Toolbar
@@ -20,24 +19,25 @@
 
             <TextView
                 android:id="@+id/toolbar_title"
+                tools:text="Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:paddingHorizontal="5dp"
-                android:textSize="20sp"
-                tools:text="Title" />
+                android:textSize="20sp" />
 
         </androidx.appcompat.widget.Toolbar>
 
+
         <EditText
-            android:id="@+id/userId"
+            android:id="@+id/idEdiText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/editext_bg"
-            android:hint="user Id"
+            android:hint="enter Id"
             android:inputType="text"
             android:paddingHorizontal="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,45 +46,18 @@
 
 
         <EditText
-            android:id="@+id/brodCastIdEdiText"
+            android:id="@+id/messageEdiText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/editext_bg"
-            android:hint="brodCastId Id"
+            android:hint="enter message"
             android:inputType="text"
             android:paddingHorizontal="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userId" />
-
-        <EditText
-            android:id="@+id/fcmToken"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/editext_bg"
-            android:hint="fcm Token"
-            android:inputType="text"
-            android:paddingHorizontal="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/brodCastIdEdiText" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/getButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/editext_bg"
-            android:paddingHorizontal="10dp"
-            android:text="get Data"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fcmToken" />
+            app:layout_constraintTop_toBottomOf="@+id/idEdiText" />
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -94,11 +67,51 @@
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/editext_bg"
+            android:hint="Post Data"
             android:paddingHorizontal="10dp"
-            android:text="Post Data"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/messageEdiText" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/getButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/editext_bg"
+            android:hint="Get Data"
+            android:paddingHorizontal="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postButton" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/pingActivity"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/editext_bg"
+            android:hint="Ping Activity"
+            android:paddingHorizontal="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/getButton" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/logOutButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/editext_bg"
+            android:hint="LogOut"
+            android:paddingHorizontal="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pingActivity" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
